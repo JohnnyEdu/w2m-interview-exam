@@ -1,24 +1,27 @@
 package org.w2m.demo.dto;
 
-public class SuperHeroDto {
-    private int id;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+
+import java.io.Serializable;
+import java.util.Set;
+
+@Data
+@AllArgsConstructor
+@Builder
+@JsonPropertyOrder({"id", "name", "super_powers"})
+public class SuperHeroDto implements Serializable {
+    @JsonProperty("id")
+    private long id;
+
+    @JsonProperty("name")
     private String name;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+    @JsonProperty("super_powers")
+    private Set<String> superPowers;
 
     public void update() {
         //this
