@@ -1,0 +1,21 @@
+version: "3.9"
+services:
+    config:
+        image: hyness/spring-cloud-config-server
+        ports:
+            - "8888:8888"
+        volumes:
+            - ./config_server:/config
+        environment:
+            SPRING_PROFILES_ACTIVE: native
+    redis:
+        image: redis:6.2-alpine
+        restart: always
+        ports:
+            - '6379:6379'
+        volumes:
+            - ./cache:/data
+    w2m-interview-exam:
+        build: .
+        ports:
+            - "8080:8080"

@@ -1,12 +1,26 @@
 plugins {
-	id 'org.springframework.boot' version '2.7.4-SNAPSHOT'
+	id 'org.springframework.boot' version '2.7.0'
 	id 'io.spring.dependency-management' version '1.0.13.RELEASE'
 	id 'java'
 }
 
 group = 'org.w2m'
-version = '0.0.1-SNAPSHOT'
+version = '1.0.0-SNAPSHOT'
 sourceCompatibility = '11'
+
+apply plugin: 'java'
+apply plugin: 'application'
+
+ext {
+	set('springCloudVersion', "2021.0.3")
+	set('h2Version', "2.1.214")
+	set('jUnitVersion', "5.9.0")
+	set('openApiVersion' , "1.6.9")
+}
+
+bootRun {
+	main = 'org.w2m.demo.DemoApplication'
+}
 
 repositories {
 	mavenCentral()
@@ -15,12 +29,36 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-cache'
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	implementation 'org.springframework.cloud:spring-cloud-starter-config'
+
+	implementation "com.h2database:h2:${h2Version}"
+
+	implementation "org.springdoc:springdoc-openapi-ui:${openApiVersion}"
+
+
+	compileOnly('org.projectlombok:lombok')
+	annotationProcessor('org.projectlombok:lombok')
+
+	testImplementation "com.h2database:h2:${h2Version}"
+
+
+	//Database
+	implementation 'org.flywaydb:flyway-core'
 
 	//test
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
-	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
+	testImplementation "org.junit.jupiter:junit-jupiter-api:${jUnitVersion}"
+	testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${jUnitVersion}"
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
 }
 
 tasks.named('test') {
