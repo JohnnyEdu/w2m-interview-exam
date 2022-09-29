@@ -1,14 +1,14 @@
 spring:
-  application:
-    name: w2m-interview-exam
-  profiles:
-    active: dev
-  config:
-    import: configserver:http://host.docker.internal:8888
-  h2:
-    console.enabled: true
+    application:
+        name: w2m-interview-exam
+    profiles:
+        active: dev
+    config:
+        import: configserver:http://host.docker.internal:8888
+    h2:
+        console.enabled: true
 logging:
-  level:
-    org:
-      springframework:
-        cache: TRACE
+    level:
+        org:
+            springframework:
+                cache: TRACE

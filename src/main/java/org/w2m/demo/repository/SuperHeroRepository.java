@@ -10,4 +10,6 @@ import java.util.List;
 public interface SuperHeroRepository extends JpaRepository<SuperHero, Long> {
     @Query(QueryConstants.FIND_BY_TOKEN)
     List<SuperHero> findAllByTokenInName(String token);
+
+    boolean existsByName(String name);
 }

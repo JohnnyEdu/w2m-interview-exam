@@ -16,12 +16,17 @@ public class RedisConfiguration {
     @Value("${redis.super-hero-cache-ttl}")
     public int SUPER_HERO_CACHE_TTL = 20;
 
+    @Value("${redis.all-super-power-cache-ttl}")
+    public int ALL_SUPER_POWER_CACHE_TTL = 60;//this shouldn't change frequently
+
     @Bean
     public RedisCacheManagerBuilderCustomizer redisCacheManagerBuilderCustomizer() {
         return (builder) -> builder
                 .withCacheConfiguration("allSuperHeroCache",
                         RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofSeconds(ALL_SUPER_HERO_CACHE_TTL)))
                 .withCacheConfiguration("superHeroCache",
-                        RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofSeconds(SUPER_HERO_CACHE_TTL)));
+                        RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofSeconds(SUPER_HERO_CACHE_TTL)))
+                .withCacheConfiguration("allSuperPowerCache",
+                        RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofSeconds(ALL_SUPER_POWER_CACHE_TTL)));
     }
 }

@@ -13,9 +13,6 @@ spring:
         properties:
             hibernate:
                 default_schema: w2m_exam_db
-    redis:
-        host: host.docker.internal
-        port: 6379
 
 flyway:
     locations: classpath:db/migration/h2
@@ -23,14 +20,6 @@ flyway:
     user: ${spring.datasource.username}
     password: ${spring.datasource.password}
     defaultSchema: w2m_exam_db
-
-
-logging:
-    level:
-        org:
-            springframework:
-                cache: TRACE
-
 
 redis:
     all-super-hero-cache-ttl: 60

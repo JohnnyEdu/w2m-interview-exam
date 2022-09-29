@@ -1,24 +1,20 @@
 package org.w2m.demo.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Set;
 
-@AllArgsConstructor
 @Builder
 @Data
-@JsonPropertyOrder({"id", "name", "super_powers"})
-public class SuperHeroDto implements Serializable {
+public class UpdateSuperHeroRequestDto implements Serializable {
 
-    @NotNull(message = "id must not be null")
+    @Min(value = 1, message = "id must be greater than zero")
     @JsonProperty("id")
     private long id;
 
@@ -28,13 +24,5 @@ public class SuperHeroDto implements Serializable {
 
     @NotEmpty(message = "super_powers must not be empty")
     @JsonProperty("super_powers")
-    private Set<SuperPowerDto> superPowers;
-
-    public void update() {
-        //this
-    }
-
-    public void delete() {
-        //this
-    }
+    private Set<String> superPowers;
 }
