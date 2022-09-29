@@ -19,10 +19,10 @@ import java.util.stream.Collectors;
 public class ExecutionTimeLoggingHandler {
 
     @Around("@annotation(org.w2m.demo.annotation.ExecutionTimeLog)")
-    public void auditExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
+    public Object auditExecutionTime(ProceedingJoinPoint joinPoint) throws Throwable {
         Instant start = Instant.now();
 
-        joinPoint.proceed();
+        var result = joinPoint.proceed();
 
         Instant end = Instant.now();
         long timeElapsed = Duration.between(start, end).toSeconds();
@@ -31,6 +31,7 @@ public class ExecutionTimeLoggingHandler {
 
         var message = String.format("Method %s cost %s seconds to execute", methodName, timeElapsed);
         log.info(message);
+        return result;
     }
 
     private String getMethodName(Signature signature) {

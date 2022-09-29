@@ -2,7 +2,6 @@ package org.w2m.demo.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.w2m.demo.entity.SuperPower;
 import org.w2m.demo.exception.SuperPowerNotFoundException;

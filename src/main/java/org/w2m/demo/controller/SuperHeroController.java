@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.w2m.demo.dto.SaveSuperHeroRequestDto;
 import org.w2m.demo.dto.SuperHeroDto;
@@ -30,8 +31,9 @@ public class SuperHeroController {
     }
 
     @GetMapping("/super-heroes")
+    @ResponseBody
     List<SuperHeroDto> superHeroes() {
-        return  superHeroService.findAll();
+        return superHeroService.findAll();
     }
 
     @GetMapping("/super-hero/{id}")

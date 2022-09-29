@@ -1,38 +1,41 @@
 spring:
-    application:
-        name: w2m-interview-exam
-    datasource:
-        url: jdbc:h2:mem:w2m_exam_db;INIT=CREATE SCHEMA IF NOT EXISTS w2m_exam_db;
-        username: sa
-        password: password
-        driverClassName: org.h2.Driver
-    jpa:
-        spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
-        hibernate:
-            ddl-auto: none
-        properties:
-            hibernate:
-                default_schema: w2m_exam_db
-    redis:
-        host: host.docker.internal
-        port: 6379
+  application:
+    name: w2m-interview-exam
+  datasource:
+    url: jdbc:h2:mem:w2m_exam_db;INIT=CREATE SCHEMA IF NOT EXISTS w2m_exam_db;
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  jpa:
+    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        default_schema: w2m_exam_db
+  redis:
+    host: host.docker.internal
+    port: 6379
 
 flyway:
-    locations: classpath:db/migration/h2
-    url: jdbc:h2:mem:w2m_exam_db
-    user: ${spring.datasource.username}
-    password: ${spring.datasource.password}
-    defaultSchema: w2m_exam_db
+  locations: classpath:db/migration/h2
+  url: jdbc:h2:mem:w2m_exam_db
+  user: ${spring.datasource.username}
+  password: ${spring.datasource.password}
+  defaultSchema: w2m_exam_db
 
 
 logging:
-    level:
-        org:
-            springframework:
-                cache: TRACE
+  level:
+    org:
+      springframework:
+        cache: TRACE
 
 
 redis:
-    all-super-hero-cache-ttl: 60
-    super-hero-cache-ttl: 40
-    all-super-power-cache-ttl: 60
+  all-super-hero-cache-ttl: 60
+  super-hero-cache-ttl: 40
+  all-super-power-cache-ttl: 60
+
+spring.security.oauth2.client.registration.google.client-id: 887747874359-gtsab6fqt4vmlufu7v5ntku7dtsdp580.apps.googleusercontent.com
+spring.security.oauth2.client.registration.google.client-secret: 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

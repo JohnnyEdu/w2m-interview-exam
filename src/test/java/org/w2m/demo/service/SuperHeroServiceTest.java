@@ -1,28 +1,16 @@
 package org.w2m.demo.service;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.w2m.demo.dto.SuperHeroDto;
 import org.w2m.demo.entity.SuperHero;
 import org.w2m.demo.exception.SuperHeroNotFoundException;
-import org.w2m.demo.exception.SuperPowerNotFoundException;
 import org.w2m.demo.mapper.SuperHeroMapper;
 import org.w2m.demo.repository.SuperHeroRepository;
-import org.w2m.demo.service.SuperHeroService;
-import org.w2m.demo.service.SuperPowerService;
 
 import java.util.ArrayList;
 import java.util.Optional;
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -111,7 +99,7 @@ class SuperHeroServiceTest {
     @Test
     public void retrieveSuperHeroByIdNotFoundException() throws Exception {
 
-        when(superHeroRepository.findById(22L)).thenReturn( Optional.empty());
+        when(superHeroRepository.findById(22L)).thenReturn(Optional.empty());
 
         assertThrows(SuperHeroNotFoundException.class, () -> superHeroService.findById(22));
     }
